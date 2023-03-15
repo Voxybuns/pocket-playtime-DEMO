@@ -1,3 +1,3 @@
-A WarioWare inspired game, for Playdate!!
+# Pocket Playtime DEMO
 
-Powered by NobleEngine, by Mark LaCroix
+A game inspired by the WarioWare series, for Playdate.
