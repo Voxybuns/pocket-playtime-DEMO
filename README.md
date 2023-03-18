@@ -9,7 +9,7 @@ source/
 ├─ libraries/
 │  │  ** Third-party libraries **
 │  ├─ roomy.lua
-│  ├─ animatedSprites.lua
+│  ├─ animatedSprite.lua
 │  └─ ...
 ├─ rooms/
 │  ├─ microgames/

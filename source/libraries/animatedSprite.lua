@@ -184,7 +184,7 @@ local function addState(self, params)
 	end
 	state["reverse"] = params.reverse -- You can reverse animation sequence
 	state["animationStartingFrame"] = params.animationStartingFrame or (state.reverse and state.framesCount or 1) -- Frame to start the animation from
-	state["tickStep"] = params.tickStep  -- Speed of animation (2 = every second frame)
+	state["tickStep"] = params.tickStep -- Speed of animation (2 = every second frame)
 	state["frameStep"] = params.frameStep -- Number of images to skip on next frame
 	state["yoyo"] = params.yoyo -- Ping-pong animation (from 1 to n to 1 to n)
 	state["flip"] = params.flip -- You can set up flip mode, read Playdate SDK Docs for more info
@@ -465,7 +465,7 @@ function AnimatedSprite:updateAnimation()
 			end
 			processAnimation(self)
 			drawFrame(self)
-			self._previousTicks += state.tickStep / (BEATS_PER_MINUTE / 120)
+			self._previousTicks += state.tickStep
 		end
 	end
 end
