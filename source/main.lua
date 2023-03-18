@@ -1,28 +1,30 @@
-import "CoreLibs/object"
+-- Importing core libraries
 import "CoreLibs/graphics"
+import "CoreLibs/object"
 import "CoreLibs/sprites"
-import "CoreLibs/timer"
-import "CoreLibs/crank"
+import "CoreLibs/animator"
+import "CoreLibs/easing"
 import "CoreLibs/math"
+import "Corelibs/timer"
+import "CoreLibs/accelerometer"
+import "CoreLibs/crank"
 
+-- Importing third-party libraries
 import "libraries/animatedSprite"
 import "libraries/roomy"
 
-import "stages/testStage"
-
+-- Defining shorthands
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
-BEATS_PER_MINUTE = 120
+-- Global scene manager
+local manager = Manager()
 
-local manager
+-- Global variables
+local tempo = 120
 
-manager = Manager()
-
-manager:enter(TestStage)
-
-function pd.update()
+-- Global update function
+function update()
     gfx.sprite.update()
     pd.timer.updateTimers()
-    manager:emit('update')
 end

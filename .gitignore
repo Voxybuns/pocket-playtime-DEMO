@@ -39,8 +39,8 @@ luac.out
 *.x86_64
 *.hex
 
+# VSCode extensions and settings
 .vscode
 
+# Folder with compiled builds
 builds/
-
-source/libraries/noble/docs/
