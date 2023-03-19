@@ -7,6 +7,8 @@ local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 -- Enabling 2x mode so I don't have to draw big sprites...
+gfx.clear(gfx.kColorBlack)
+gfx.setBackgroundColor(gfx.kColorBlack)
 pd.display.setScale(2)
 pd.display.setRefreshRate(50)
 

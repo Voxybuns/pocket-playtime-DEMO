@@ -8,6 +8,7 @@ class('StageTimer').extends(gfx.sprite)
 
 -- When called...
 function StageTimer:init()
+    gfx.setColor(gfx.kColorWhite)
 
     self.tempo = gameSettings.tempo
     -- Convert 8 beats into milliseconds according to the tempo
