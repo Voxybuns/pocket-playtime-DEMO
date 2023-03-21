@@ -6,11 +6,10 @@ import "utilities/importRooms"
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
--- Enabling 2x mode so I don't have to draw big sprites...
-gfx.clear(gfx.kColorBlack)
+-- Display setup
+gfx.clear(gfx.kColorBlack) -- Invert colors
 gfx.setBackgroundColor(gfx.kColorBlack)
-pd.display.setScale(2)
-pd.display.setRefreshRate(50)
+pd.display.setScale(2) -- Half-res cuz I don't wanna draw big sprites
 
 -- Creating the global game settings
 gameSettings = GameSettings()

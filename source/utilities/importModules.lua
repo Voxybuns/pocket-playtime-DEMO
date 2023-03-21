@@ -20,3 +20,4 @@ import "scripts/stageTimer"
 
 -- Utilities
 import "utilities/beatsToTime"
+import "utilities/spriteWithChild"
