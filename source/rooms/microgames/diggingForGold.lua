@@ -23,7 +23,9 @@ local sfxGiggle = pd.sound.sampleplayer.new("assets/giggle")
 local sfxWiggle = pd.sound.sampleplayer.new("assets/wiggle")
 local sfxPop = pd.sound.sampleplayer.new("assets/popped_cork")
 
-local isIn = false
+local isIn
+local isPicking
+local isBump
 
 -- Hand stuff
 class("Hand").extends(gfx.sprite)
@@ -41,15 +43,10 @@ function Hand:update()
 end
 
 
--- Game states
-local isPicking = false
-local isBump = false
-
 -- Creating a pinky class...
 class("Pinky").extends(gfx.sprite)
 function Pinky:init()
     Pinky.super.init(self)
-    
     -- Animators
     local idle1 = pd.geometry.point.new(80, 100)
     local idle2 = pd.geometry.point.new(120, 100)
@@ -110,6 +107,10 @@ end
 
 function DiggingForGold:enter()
     DiggingForGold.super:enter(self)
+
+    isIn = false
+    isPicking = false
+    isBump = false
 
     finger = Pinky()
     hand = Hand(-19, 38)
