@@ -27,6 +27,8 @@ local isIn
 local isPicking
 local isBump
 
+local isGameWon
+
 -- Hand stuff
 class("Hand").extends(gfx.sprite)
 function Hand:init(__offsetX, __offsetY)
@@ -127,14 +129,17 @@ function DiggingForGold:enter()
     noseColliderRight = gfx.sprite.addEmptyCollisionSprite(120, 56, 2, 8)
 end
 
+function DiggingForGold:update()
+    DiggingForGold.super.update(self)
+    if isIn == true then
+        self.isWon = true
+    end
+end
+
 function DiggingForGold:AButtonDown()
     if isPicking == false then
         isPicking = true
         finger.animatorPick:reset()
         finger:removeAnimator()
     end
-end
-
-function DiggingForGold:BButtonDown()
-    manager:enter(Intermission())
 end
