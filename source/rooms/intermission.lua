@@ -5,7 +5,7 @@ local gfx <const> = pd.graphics
 class("Intermission").extends(Room)
 
 -- Create a table to store the lives on screen
-local dials = {}
+local lives = {}
 
 local sceneTimer
 local sfxIntermission
@@ -15,34 +15,35 @@ local sfxLost
 local isGameWon
 
 -- Create a class for the dial sprites
-class("Dial").extends(gfx.sprite)
+class("Life").extends(gfx.sprite)
 
 -- Initialize Dial object
-function Dial:init(__x, __y)
-    self.dialImage = gfx.imagetable.new("assets/intermission/dial")
-    self.dial = AnimatedSprite.new(self.dialImage)
-    self.dial:addState("popped", 2, 2)
-    self.dial:addState("idle", 1, 1)
-    self.dial:moveTo(__x, __y)
-    self.dial:playAnimation()
+function Life:init(__x, __y)
+    self.lifeImage = gfx.imagetable.new("assets/intermission/life")
+    self.life = AnimatedSprite.new(self.lifeImage)
+    self.life:addState("empty", 9, 11, {tickStep = 2})
+    self.life:addState("emptying", 4, 8, {tickStep = 2, nextAnimation = "empty"})
+    self.life:addState("full", 1, 3, {tickStep = 2})
+    self.life:moveTo(__x, __y)
+    self.life:playAnimation()
 end
 
 -- Draw the life bar
 function checkLives()
-    -- Draw all dials with the default empty state
+    -- Draw all icons with the default empty state
     for i = 1, 4, 1 do
-        dials[i] = Dial(40 + (i * 24), 100)
+        lives[i] = Life(48 + (i * 64), 200)
     end
-    -- Have all remaining lives display their idle state
+    -- Have all remaining lives display their full state
     for i = 1, gameSettings.lives, 1 do
-        dials[i].dial:changeState("idle")
+        lives[i].life:changeState("full")
     end
 end
 
 -- Handle lives animation and count when game is lost
 function loseLive()
     -- Changing the current life to its empty state
-    dials[gameSettings.lives].dial:changeState("popped")
+    lives[gameSettings.lives].life:changeState("emptying")
     -- Decreasing lives
     gameSettings.lives -= 1
 end
@@ -73,12 +74,12 @@ function Intermission:enter(previous, ...)
     sfxWon = pd.sound.sampleplayer.new("assets/gamewon")
     sfxLost = pd.sound.sampleplayer.new("assets/gamelost")
     -- React to exit game's state
-    if isGameWon == true then -- When exit game is won...
+    if isGameWon == true then
         sfxWon:play()
         sceneTimer = pd.timer.performAfterDelay(beatsToMs(8), function()
             Intermission:goToGame()
         end)
-    elseif isGameWon == false then -- When exit game is lost...
+    elseif isGameWon == false then
         sfxLost:play()
         loseLive()
         sceneTimer = pd.timer.performAfterDelay(beatsToMs(8), function()

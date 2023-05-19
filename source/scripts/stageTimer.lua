@@ -14,20 +14,20 @@ function StageTimer:init()
     -- Convert 8 beats into milliseconds according to the tempo
     self.duration = 8 * (60000 / self.tempo)
     -- Creating a unit timer
-    self.timer = pd.timer.new(self.duration, 200, 0)
+    self.timer = pd.timer.new(self.duration, 400, 0)
     -- Calling a function to draw the timer on every update
     self.timer.updateCallback = function(timer)
         self:updateTimer(self.timer.value)
     end
-    self:moveTo(100, 118)
+    self:moveTo(200, 236)
 end
 
 -- Drawing the timer
 function StageTimer:updateTimer(__newTime)
     local timerWidth = __newTime
-    local timerImage = gfx.image.new(200, 4)
+    local timerImage = gfx.image.new(400, 8)
     gfx.pushContext(timerImage)
-        gfx.fillRect(0, 0, timerWidth, 4)
+        gfx.fillRect(0, 0, timerWidth, 8)
     gfx.popContext()
     self:setImage(timerImage)
     self:add()

@@ -9,7 +9,6 @@ local gfx <const> = pd.graphics
 -- Display setup
 gfx.clear(gfx.kColorBlack) -- Invert colors
 gfx.setBackgroundColor(gfx.kColorBlack)
-pd.display.setScale(2) -- Half-res cuz I don't wanna draw big sprites
 
 -- Creating the global game settings
 gameSettings = GameSettings()
